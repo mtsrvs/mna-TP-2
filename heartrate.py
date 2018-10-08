@@ -49,19 +49,22 @@ r = r[0,0:n]-np.mean(r[0,0:n])
 g = g[0,0:n]-np.mean(g[0,0:n])
 b = b[0,0:n]-np.mean(b[0,0:n])
 
-print(np.fft.fftshift([1,2,3,4,5,6]))
-print('---------------------')
-
 #len([1,2,3,4,5,6])//2 #me devuelve el floor de la division.
 #len([1,2,3,4,5,6])%2 #me retorna el modulo de la operacion.
 #con estas dos operaciones podria crear el fftshift.
 
-print(np.fft.fftshift([1,2,3,4,5]))
-print(myfft.fftshift([1,2,3,4,5]))
+#print(np.fft.fftshift([1,2,3,4,5]))
+#print(myfft.fftshift([1,2,3,4,5]))
 
-R = np.abs(np.fft.fftshift(np.fft.fft(r)))**2
-G = np.abs(np.fft.fftshift(np.fft.fft(g)))**2
-B = np.abs(np.fft.fftshift(np.fft.fft(b)))**2
+#codigo del profesor
+#R = np.abs(np.fft.fftshift(np.fft.fft(r)))**2
+#G = np.abs(np.fft.fftshift(np.fft.fft(g)))**2
+#B = np.abs(np.fft.fftshift(np.fft.fft(b)))**2
+#codigo nuestro
+R = np.abs(myfft.fftshift(myfft.fft(r)))**2
+G = np.abs(myfft.fftshift(myfft.fft(g)))**2
+B = np.abs(myfft.fftshift(myfft.fft(b)))**2
+
 
 plt.plot(60*f,R)
 plt.xlim(0,200)

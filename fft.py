@@ -26,10 +26,6 @@ def fftshift(x):
         right = x[:half_size]
 
     return np.append(left, right)
-#[1,2,3,4,5][len([1,2,3,4,5])//2:] -> tengo la segunda mitad.
-# len([1,2,3,4,5,6])//2 #me devuelve el floor de la division.
-# len([1,2,3,4,5,6])%2 #me retorna el modulo de la operacion.
-
 
 print(' '.join("%5.3f" % abs(f)
                for f in fft([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0])))
