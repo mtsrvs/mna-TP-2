@@ -1,0 +1,9 @@
+video:
+  name: "nombre_del_vide0.mp4"
+  sizeChange:
+    min: 10
+    step: 5
+    max: 50
+  positionChange: ["CENTER","NORTH"]
+heartbeats: 60
+duration: 30 #en segundos
