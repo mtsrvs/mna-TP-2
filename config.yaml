@@ -1,9 +1,9 @@
 video:
-  name: "nombre_del_vide0.mp4"
+  name: "2017-09-14 21.53.59.mp4"
   sizeChange:
     min: 10
     step: 5
-    max: 50
+    max: 50 #no es inclusivo
   positionChange: ["CENTER","NORTH"]
 heartbeats: 60
 duration: 30 #en segundos
