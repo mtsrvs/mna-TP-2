@@ -1,9 +1,9 @@
 video:
   name: "2017-09-14 21.53.59.mp4"
   sizeChange:
-    min: 10
+    min: 20
     step: 5
-    max: 50 #no es inclusivo
-  positionChange: ["CENTER","NORTH"]
+    max: 30 #no es inclusivo
+  positionChange: ["C","N"]
 heartbeats: 60
 duration: 30 #en segundos
