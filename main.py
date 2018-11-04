@@ -4,12 +4,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import cv2
 import fft as myfft
+import blandaltmanplot as bap
 
 def yaml_loader(file_path):
     with open(file_path, "r") as file_descriptor:
         data = yaml.load(file_descriptor)
     return data
-
 
 def frame_selection(position, W, H, w):
     M = [
@@ -58,8 +58,7 @@ def process_file(filename, heartbeats, duration, size, position):
     cap.release()
     cv2.destroyAllWindows()
 
-#    n = 1024
-
+    #n = 1024
     #n tiene que ser multiplo de 2, por lo tanto, en base a la duracion,
     #busco el multiplo mas cercano.
     n = multiploDe2(frame_duration)
@@ -89,6 +88,9 @@ def process_file(filename, heartbeats, duration, size, position):
     print("R - Frecuencia cardíaca: ", abs(f[np.argmax(R)]) * 60, " pulsaciones por minuto");
     print("G - Frecuencia cardíaca: ", abs(f[np.argmax(G)]) * 60, " pulsaciones por minuto");
     print("B - Frecuencia cardíaca: ", abs(f[np.argmax(B)]) * 60, " pulsaciones por minuto");
+
+    bap.BlandAltmanPlot(G,B)
+    print("plot")
 
 def multiploDe2(length):
     prev = 2
