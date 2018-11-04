@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+#source: https://github.com/JohnBracken/Bland-Altman-and-correlation-analysis-in-Python/blob/master/BlandAltman_correlation.py
+
 #Function to create a Bland-Altman plot comparing agreement between two data sets.
 def BlandAltmanPlot(Xdata, Ydata):
 
