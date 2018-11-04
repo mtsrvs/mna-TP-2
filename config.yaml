@@ -1,9 +1,12 @@
 video:
-  name: "2017-09-14 21.53.59.mp4"
+#  name: "2017-09-14 21.53.59.mp4"
+  name: "IMG_3652.MOV"
   sizeChange:
-    min: 20
-    step: 5
-    max: 30 #no es inclusivo
-  positionChange: ["C","N"]
+    min: 30
+    step: 20
+    max: 40 #no es inclusivo
+#  positionChange: ["C","N"]
+  positionChange: ["NW","N","NE","W","C","E","SW","S","SE"]
+#  positionChange: ["S"]
 heartbeats: 60
-duration: 30 #en segundos
+duration: 10 #en segundos
