@@ -21,7 +21,7 @@ def frame_selection(position, W, H, w):
             if(position == M[i][j]):
                 return int(1/3*i*W), int(1/3*i*W+w), int(1/3*j*H), int(1/3*j*H+w)
 
-def process_file(filename, heartbeats, duration, size, position):
+def process_file(filename, heartbeats, duration_porc, size, position):
     #print(filename, heartbeats, duration, size, position)
     cap = cv2.VideoCapture('videos/'+filename)
 
@@ -30,6 +30,7 @@ def process_file(filename, heartbeats, duration, size, position):
     #    return
 
     length = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    until = int(length*duration_porc)
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = cap.get(cv2.CAP_PROP_FPS)
@@ -39,7 +40,7 @@ def process_file(filename, heartbeats, duration, size, position):
     b = np.zeros((1, length))
 
     k = 0
-    while (cap.isOpened() and r.size > k):
+    while (cap.isOpened() and (length > k and until > k)):
 
         ret, frame = cap.read()
         width = frame.shape[0]
@@ -82,7 +83,15 @@ def process_file(filename, heartbeats, duration, size, position):
     plt.plot(60 * f, B)
     plt.xlim(0, 200)
 
-    print("Frecuencia cardíaca: ", abs(f[np.argmax(G)]) * 60, " pulsaciones por minuto")
+    resultados = {
+        "position": position,
+        "R": abs(abs(f[np.argmax(R)]) * 60- heartbeats),
+        "G": abs(abs(f[np.argmax(G)]) * 60- heartbeats),
+        "B": abs(abs(f[np.argmax(B)]) * 60- heartbeats),
+        "real": heartbeats
+    }
+    print(resultados)
+    #print("Frecuencia cardíaca: ", abs(f[np.argmax(G)]) * 60, " pulsaciones por minuto")
 
 
 if __name__ == "__main__":

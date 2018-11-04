@@ -3,7 +3,7 @@ video:
   sizeChange:
     min: 20
     step: 5
-    max: 30 #no es inclusivo
-  positionChange: ["C","N"]
+    max: 25 #no es inclusivo
+  positionChange: ["NW","N","NE","W","C","E","SW","S","SE"]
 heartbeats: 60
-duration: 30 #en segundos
+duration: 1 #en porcentaje
