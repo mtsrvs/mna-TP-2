@@ -1,5 +1,6 @@
 from cmath import exp, pi
 import numpy as np
+import matplotlib.pyplot as plt
 
 #https://rosettacode.org/wiki/Fast_Fourier_transform#Python
 def fft(x):
@@ -10,6 +11,7 @@ def fft(x):
     T= [exp(-2j*pi*k/N)*odd[k] for k in range(N//2)]
     return [even[k] + T[k] for k in range(N//2)] + \
            [even[k] - T[k] for k in range(N//2)]
+
 
 #author: matias
 def fftshift(x):
@@ -27,7 +29,6 @@ def fftshift(x):
 
     return np.append(left, right)
 
-print(' '.join("%5.3f" % abs(f)
-               for f in fft([1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 0.0])))
+
 
 
