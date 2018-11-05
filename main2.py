@@ -1,3 +1,4 @@
+# coding=utf-8
 import yaml
 import numpy as np
 import matplotlib.pyplot as plt
@@ -31,6 +32,7 @@ def process_file(filename, heartbeats, duration_porc, size, position):
 
     length = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
     until = int(length*duration_porc)
+
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = cap.get(cv2.CAP_PROP_FPS)
@@ -73,21 +75,22 @@ def process_file(filename, heartbeats, duration_porc, size, position):
     G = np.abs(myfft.fftshift(myfft.fft(g))) ** 2
     B = np.abs(myfft.fftshift(myfft.fft(b))) ** 2
 
-    plt.plot(60 * f, R)
+    plt.plot(60 * f, R, color= "red")
     plt.xlim(0, 200)
 
-    plt.plot(60 * f, G)
+    plt.plot(60 * f, G, color= "green")
     plt.xlim(0, 200)
+
+    plt.plot(60 * f, B, color= "blue")
+    plt.xlim(0, 200)
+
     plt.xlabel("frecuencia [1/minuto]")
-
-    plt.plot(60 * f, B)
-    plt.xlim(0, 200)
 
     resultados = {
         "position": position,
-        "R": abs(abs(f[np.argmax(R)]) * 60- heartbeats),
-        "G": abs(abs(f[np.argmax(G)]) * 60- heartbeats),
-        "B": abs(abs(f[np.argmax(B)]) * 60- heartbeats),
+        "R": abs(abs(f[np.argmax(R)]) * 60 - heartbeats),
+        "G": abs(abs(f[np.argmax(G)]) * 60 - heartbeats),
+        "B": abs(abs(f[np.argmax(B)]) * 60 - heartbeats),
         "real": heartbeats
     }
     print(resultados)

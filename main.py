@@ -85,12 +85,16 @@ def process_file(filename, heartbeats, duration, size, position):
 
     print("VIDEO: " + filename)
     print(filename, heartbeats, duration, size, position)
-    print("R - Frecuencia cardíaca: ", abs(f[np.argmax(R)]) * 60, " pulsaciones por minuto");
-    print("G - Frecuencia cardíaca: ", abs(f[np.argmax(G)]) * 60, " pulsaciones por minuto");
-    print("B - Frecuencia cardíaca: ", abs(f[np.argmax(B)]) * 60, " pulsaciones por minuto");
+    resultados = {
+        "position": position,
+        "R": abs(f[np.argmax(R)]) * duration, # - heartbeats),
+        "G": abs(f[np.argmax(G)]) * duration, # - heartbeats),
+        "B": abs(f[np.argmax(B)]) * duration, # - heartbeats),
+        "real": heartbeats
+    }
+    print(resultados)
 
-    bap.BlandAltmanPlot(G,B)
-    print("plot")
+#    bap.BlandAltmanPlot(G,B)
 
 def multiploDe2(length):
     prev = 2

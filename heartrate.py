@@ -77,4 +77,6 @@ plt.xlabel("frecuencia [1/minuto]")
 plt.plot(60*f,B)
 plt.xlim(0,200)
 
+plt.show()
+
 print("Frecuencia cardíaca: ", abs(f[np.argmax(G)])*60, " pulsaciones por minuto")
