@@ -1,12 +1,15 @@
 video:
 #  name: "2017-09-14 21.53.59.mp4"
-  name: "IMG_3664.MOV"
+#  name: "IMG_3676_hermana.MOV"
+  name: "IMG_3669.MOV"
   sizeChange:
     min: 30
     step: 5
     max: 35 #no es inclusivo
-  positionChange: ["NW","N","NE","W","C","E","SW","S","SE"]
-heartbeats: 64
+#  positionChange: ["NW","N","NE","W","C","E","SW","S","SE"]
+  positionChange: ["NW", "SW", "NE", "SE"]
+#  positionChange: ["SW"]
+heartbeats: 67
 duration: 60 #en porcentaje
 
 

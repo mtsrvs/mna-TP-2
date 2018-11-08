@@ -1,0 +1,139 @@
+<html>
+<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<style>
+.bin{
+  min-width: 180px; height: 180px; max-width: 180px; margin: 0 auto
+}
+</style>
+
+<table>
+ <tr>
+    <td></td>
+    <td>5 s</td>
+    <td>10 s</td>
+    <td>20 s</td>
+    <td>30 s</td>
+    <td>60 s</td>
+  </tr>
+  <tr>
+    <td>NW</td>
+    <td><div id="t5NW" class="bin"></div></td>
+    <td><div id="t10NW" class="bin"></div></td>
+    <td><div id="t20NW" class="bin"></div></td>
+    <td><div id="t30NW" class="bin"></div></td>
+    <td><div id="t60NW" class="bin"></div></td>
+  </tr>
+  <tr>
+    <td>SW</td>
+    <td><div id="t5SW" class="bin"></div></td>
+    <td><div id="t10SW" class="bin"></div></td>
+    <td><div id="t20SW" class="bin"></div></td>
+    <td><div id="t30SW" class="bin"></div></td>
+    <td><div id="t60SW" class="bin"></div></td>
+  </tr>
+  <tr>
+    <td>NE</td>
+    <td><div id="t5NE" class="bin"></div></td>
+    <td><div id="t10NE" class="bin"></div></td>
+    <td><div id="t20NE" class="bin"></div></td>
+    <td><div id="t30NE" class="bin"></div></td>
+    <td><div id="t60NE" class="bin"></div></td>
+  </tr>
+  <tr>
+    <td>SE</td>
+    <td><div id="t5SE" class="bin"></div></td>
+    <td><div id="t10SE" class="bin"></div></td>
+    <td><div id="t20SE" class="bin"></div></td>
+    <td><div id="t30SE" class="bin"></div></td>
+    <td><div id="t60SE" class="bin"></div></td>
+  </tr>
+</table>
+
+<script>
+    function plotPie(id, r,g, b){
+Highcharts.chart(id, {
+		exporting: { enabled: false },
+    credits: {
+      enabled: false
+  },
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: ''
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'R',
+            y: r,
+            color: 'red'
+        }, {
+            name: 'G',
+            y: g,
+            color: 'green'
+        }, {
+            name: 'B',
+            y: b,
+            color: 'blue'
+        }]
+    }]
+});
+}
+
+data = [
+{'real': 30, 'position': 't5NW', 'B': 1.17, 'R': 1.17, 'G': 75.0},
+{'real': 30, 'position': 't5SW', 'B': 1.17, 'R': 1.17, 'G': 75.0},
+{'real': 30, 'position': 't5NE', 'B': 1.17, 'R': 2.34, 'G': 75.0},
+{'real': 30, 'position': 't5SE', 'B': 1.17, 'R': 5.86, 'G': 75.0},
+
+{'real': 30, 'position': 't10NW', 'B': 10.55, 'R': 2.34, 'G': 150.0},
+{'real': 30, 'position': 't10SW', 'B': 10.55, 'R': 10.55, 'G': 150.0},
+{'real': 30, 'position': 't10NE', 'B': 10.55, 'R': 10.55, 'G': 150.0},
+{'real': 30, 'position': 't10SE', 'B': 10.55, 'R': 1.17, 'G': 150.0},
+
+{'real': 30, 'position': 't20NW', 'B': 22.27, 'R': 2.34, 'G': 300.01},
+{'real': 30, 'position': 't20SW', 'B': 22.27, 'R': 1.17, 'G': 300.01},
+{'real': 30, 'position': 't20NE', 'B': 22.27, 'R': 1.17, 'G': 300.01},
+{'real': 30, 'position': 't20SE', 'B': 22.27, 'R': 1.17, 'G': 300.01},
+
+{'real': 30, 'position': 't30NW', 'B': 33.4, 'R': 3.52, 'G': 450.01},
+{'real': 30, 'position': 't30SW', 'B': 33.4, 'R': 1.76, 'G': 450.01},
+{'real': 30, 'position': 't30NE', 'B': 33.4, 'R': 1.76, 'G': 450.01},
+{'real': 30, 'position': 't30SE', 'B': 33.4, 'R': 1.76, 'G': 450.01},
+
+
+{'real': 30, 'position': 't60NW', 'B': 66.8, 'R': 3.52, 'G': 900.02},
+{'real': 30, 'position': 't60SW', 'B': 66.8, 'R': 3.52, 'G': 900.02},
+{'real': 30, 'position': 't60NE', 'B': 66.8, 'R': 1.76, 'G': 900.02},
+{'real': 30, 'position': 't60SE', 'B': 66.8, 'R': 1.76, 'G': 900.02}
+
+
+
+];
+data.map( d => plotPie(d.position, d.R, d.G, d.B));
+
+
+</script>
+
+</body>
+</html>
