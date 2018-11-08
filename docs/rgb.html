@@ -1,0 +1,94 @@
+<html>
+<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<style>
+.bin{
+  min-width: 180px; height: 180px; max-width: 180px; margin: 0 auto
+}
+</style>
+
+<table>
+  <tr>
+    <td><div id="NW" class="bin"></div></td>
+    <td><div id="N" class="bin"></div></td>
+    <td><div id="NE" class="bin"></div></td>
+  </tr>
+  <tr>
+    <td><div id="W" class="bin"></div></td>
+    <td><div id="C" class="bin"></div></td>
+    <td><div id="E" class="bin"></div></td>
+  </tr>
+  <tr>
+    <td><div id="SW" class="bin"></div></td>
+    <td><div id="S" class="bin"></div></td>
+    <td><div id="SE" class="bin"></div></td>
+  </tr>
+</table>
+
+<script>
+    function plotPie(id, r,g, b){
+Highcharts.chart(id, {
+		exporting: { enabled: false },
+    credits: {
+      enabled: false
+  },
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: ''
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'R',
+            y: r,
+            color: 'red'
+        }, {
+            name: 'G',
+            y: g,
+            color: 'green'
+        }, {
+            name: 'B',
+            y: b,
+            color: 'blue'
+        }]
+    }]
+});
+}
+data = [
+{'real': 64, 'position': 'NW', 'B': 1.7578609793430597, 'R': 1.7578609793430597, 'G': 1.7578609793430597},
+{'real': 64, 'position': 'N', 'B': 1.7578609793430597, 'R': 1.7578609793430597, 'G': 1.7578609793430597},
+{'real': 64, 'position': 'NE', 'B': 1.7578609793430597, 'R': 1.7578609793430597, 'G': 1.7578609793430597},
+{'real': 64, 'position': 'W', 'B': 1.7578609793430597, 'R': 1.7578609793430597, 'G': 1.7578609793430597},
+{'real': 64, 'position': 'C', 'B': 1.7578609793430597, 'R': 1.7578609793430597, 'G': 1.7578609793430597},
+{'real': 64, 'position': 'E', 'B': 1.7578609793430597, 'R': 1.7578609793430597, 'G': 1.7578609793430597},
+{'real': 64, 'position': 'SW', 'B': 1.7578609793430597, 'R': 1.7578609793430597, 'G': 1.7578609793430597},
+{'real': 64, 'position': 'S', 'B': 1.7578609793430597, 'R': 1.7578609793430597, 'G': 1.7578609793430597},
+{'real': 64, 'position': 'SE', 'B': 1.7578609793430597, 'R': 1.7578609793430597, 'G': 1.7578609793430597}
+];
+data.map( d => plotPie(d.position, d.R, d.G, d.B));
+//plotPie("NW", 2,4,1);
+
+</script>
+
+</body>
+</html>
