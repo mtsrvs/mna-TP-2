@@ -1,0 +1,136 @@
+<html>
+<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<style>
+.bin{
+  min-width: 180px; height: 180px; max-width: 180px; margin: 0 auto
+}
+</style>
+
+<table>
+ <tr>
+    <td></td>
+    <td>5 s</td>
+    <td>10 s</td>
+    <td>20 s</td>
+    <td>30 s</td>
+    <td>60 s</td>
+  </tr>
+  <tr>
+    <td>NW</td>
+    <td><div id="t5NW" class="bin"></div></td>
+    <td><div id="t10NW" class="bin"></div></td>
+    <td><div id="t20NW" class="bin"></div></td>
+    <td><div id="t30NW" class="bin"></div></td>
+    <td><div id="t60NW" class="bin"></div></td>
+  </tr>
+  <tr>
+    <td>SW</td>
+    <td><div id="t5SW" class="bin"></div></td>
+    <td><div id="t10SW" class="bin"></div></td>
+    <td><div id="t20SW" class="bin"></div></td>
+    <td><div id="t30SW" class="bin"></div></td>
+    <td><div id="t60SW" class="bin"></div></td>
+  </tr>
+  <tr>
+    <td>NE</td>
+    <td><div id="t5NE" class="bin"></div></td>
+    <td><div id="t10NE" class="bin"></div></td>
+    <td><div id="t20NE" class="bin"></div></td>
+    <td><div id="t30NE" class="bin"></div></td>
+    <td><div id="t60NE" class="bin"></div></td>
+  </tr>
+  <tr>
+    <td>SE</td>
+    <td><div id="t5SE" class="bin"></div></td>
+    <td><div id="t10SE" class="bin"></div></td>
+    <td><div id="t20SE" class="bin"></div></td>
+    <td><div id="t30SE" class="bin"></div></td>
+    <td><div id="t60SE" class="bin"></div></td>
+  </tr>
+</table>
+
+<script>
+    function plotPie(id, r,g, b){
+Highcharts.chart(id, {
+		exporting: { enabled: false },
+    credits: {
+      enabled: false
+  },
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: ''
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'R',
+            y: r,
+            color: 'red'
+        }, {
+            name: 'G',
+            y: g,
+            color: 'green'
+        }, {
+            name: 'B',
+            y: b,
+            color: 'blue'
+        }]
+    }]
+});
+}
+
+data = [
+{'real': 67, 'position': 't5NW', 'B': 5.86, 'R': 5.86, 'G': 18.75},
+{'real': 67, 'position': 't5SW', 'B': 5.86, 'R': 5.86, 'G': 5.86},
+{'real': 67, 'position': 't5NE', 'B': 5.86, 'R': 5.86, 'G': 1.17},
+{'real': 67, 'position': 't5SE', 'B': 5.86, 'R': 5.86, 'G': 12.89},
+
+{'real': 67, 'position': 't10NW', 'B': 11.72, 'R': 11.72, 'G': 1.17},
+{'real': 67, 'position': 't10SW', 'B': 11.72, 'R': 11.72, 'G': 11.72},
+{'real': 67, 'position': 't10NE', 'B': 11.72, 'R': 11.72, 'G': 1.17},
+{'real': 67, 'position': 't10SE', 'B': 11.72, 'R': 11.72, 'G': 1.17},
+
+{'real': 67, 'position': 't20NW', 'B': 24.61, 'R': 24.61, 'G': 1.17},
+{'real': 67, 'position': 't20SW', 'B': 24.61, 'R': 24.61, 'G': 1.17},
+{'real': 67, 'position': 't20NE', 'B': 24.61, 'R': 24.61, 'G': 1.17},
+{'real': 67, 'position': 't20SE', 'B': 24.61, 'R': 24.61, 'G': 1.17},
+
+{'real': 67, 'position': 't30NW', 'B': 36.92, 'R': 36.92, 'G': 1.76},
+{'real': 67, 'position': 't30SW', 'B': 36.92, 'R': 36.92, 'G': 1.76},
+{'real': 67, 'position': 't30NE', 'B': 36.92, 'R': 36.92, 'G': 1.76},
+{'real': 67, 'position': 't30SE', 'B': 36.92, 'R': 36.92, 'G': 1.76},
+
+{'real': 67, 'position': 't60NW', 'B': 1.76, 'R': 1.76, 'G': 1.76},
+{'real': 67, 'position': 't60SW', 'B': 73.83, 'R': 1.76, 'G': 1.76},
+{'real': 67, 'position': 't60NE', 'B': 1.76, 'R': 1.76, 'G': 1.76},
+{'real': 67, 'position': 't60SE', 'B': 1.76, 'R': 1.76, 'G': 1.76}
+
+];
+data.map( d => plotPie(d.position, d.R, d.G, d.B));
+
+
+</script>
+
+</body>
+</html>
