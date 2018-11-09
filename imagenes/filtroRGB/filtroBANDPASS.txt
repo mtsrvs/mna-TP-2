@@ -1,0 +1,12 @@
+-----------------------------------
+('IMG_3652.MOV', 67, 60, 30, 'NW')
+{'real': 67, 'R': 3.52, 'G': 900.02, 'B': 66.8, 'filtro sobre R': 3.52, 'filtro sobre G': 900.02, 'filtro sobre B': 66.8, 'position': 'NW'}
+-----------------------------------
+('IMG_3652.MOV', 67, 60, 30, 'SW')
+{'real': 67, 'R': 3.52, 'filtro sobre R': 3.52, 'filtro sobre G': 900.02, 'G': 900.02, 'B': 66.8, 'filtro sobre B': 3.52, 'position': 'SW'}
+-----------------------------------
+('IMG_3652.MOV', 67, 60, 30, 'NE')
+{'real': 67, 'R': 1.76, 'G': 900.02, 'B': 66.8, 'filtro sobre R': 1.76, 'filtro sobre G': 900.02, 'filtro sobre B': 66.8, 'position': 'NE'}
+-----------------------------------
+('IMG_3652.MOV', 67, 60, 30, 'SE')
+{'real': 67, 'R': 1.76, 'G': 900.02, 'B': 66.8, 'filtro sobre R': 1.76, 'filtro sobre G': 900.02, 'filtro sobre B': 66.8, 'position': 'SE'}
