@@ -10,7 +10,8 @@ import matplotlib.pyplot as plt
 import cv2
 import fft as myfft
 
-cap = cv2.VideoCapture('videos/2017-09-14 21.53.59.mp4')
+#cap = cv2.VideoCapture('videos/2017-09-14 21.53.59.mp4')
+cap = cv2.VideoCapture('videos/IMG_3669.MOV')
 
 #if not cap.isOpened(): 
 #    print("No lo pude abrir")
@@ -77,6 +78,6 @@ plt.xlabel("frecuencia [1/minuto]")
 plt.plot(60*f,B)
 plt.xlim(0,200)
 
-plt.show()
+#plt.show()
 
 print("Frecuencia cardíaca: ", abs(f[np.argmax(G)])*60, " pulsaciones por minuto")

@@ -44,17 +44,48 @@ def process_file(filename, heartbeats, duration, size, position):
 #    print(position, width, height, frame_size)
 #    print(hmin, hmax, wmin, wmax)
     k = 0
-#    out1 = cv2.VideoWriter('hermana_red_2_.avi', cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 10, (width, height))
+
+    out1 = cv2.VideoWriter('frame.avi', cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 10, (width, height))
+    out2 = cv2.VideoWriter('mask.avi', cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 10, (width, height))
+    out3 = cv2.VideoWriter('res.avi', cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'), 10, (width, height))
+
     while (cap.isOpened() and r.size > k):
         ret, frame = cap.read()
 
+#        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
+ #       frame = gray
+
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-        lower_red = np.array([30, 170, 150])
-        upper_red = np.array([255, 255, 255])
+
+#        lower_blue = np.array([110, 50, 50])
+#        upper_blue = np.array([130, 255, 255])
+#        mask = cv2.inRange(hsv, lower_blue, upper_blue)
+#        res = cv2.bitwise_and(frame, frame, mask=mask)
+
+        lower_red = np.array([30, 150, 50])
+        upper_red = np.array([255, 255, 180])
         mask = cv2.inRange(hsv, lower_red, upper_red)
         res = cv2.bitwise_and(frame, frame, mask=mask)
+
+
+#        cv2.imshow('frame', frame)
+#        cv2.imshow('mask', mask)
+#        cv2.imshow('res', res)
+        out1.write(frame)
+        out2.write(mask)
+        out3.write(res)
+#        j = cv2.waitKey(5) & 0xFF
+#        if j == 27:
+#            break
+
         frame = res
-#        out1.write(res)
+
+        #gray[:, :, 0] = 0
+        #gray[:, :, 1] = 0
+        #gray[:, :, 2] = 0
+        #cv2.imshow('frame', gray)
+        #if (cv2.waitKey(1) & 0xFF == ord('q')):
+        #    break
 
         if ret == True:
             #cambie el order de los parametros porque frame es de [720][1280]
@@ -64,8 +95,11 @@ def process_file(filename, heartbeats, duration, size, position):
         else:
             break
         k = k + 1
+   # print (k)
 
-#    out1.release()
+    out1.release()
+    out2.release()
+    out3.release()
 
     cap.release()
     cv2.destroyAllWindows()
@@ -85,26 +119,24 @@ def process_file(filename, heartbeats, duration, size, position):
     G = np.abs(myfft.fftshift(myfft.fft(g))) ** 2
     B = np.abs(myfft.fftshift(myfft.fft(b))) ** 2
 
-    plt.plot(60 * f, R, label="Red", color= "red")
+    plt.plot(60 * f, R, color= "red")
     plt.xlim(0, 200)
 
-    plt.plot(60 * f, G, label="Green", color= "green")
+    plt.plot(60 * f, G, color= "green")
     plt.xlim(0, 200)
 
-    plt.plot(60 * f, B, label="Blue", color= "blue")
+    plt.plot(60 * f, B, color= "blue")
     plt.xlim(0, 200)
 
-    plt.legend(loc='upper left')
 
-    plt.savefig("hsv_red_video_2_" + position);
-    plt.clf()
+   # plt.show()
 #    print("VIDEO: " + filename)
 #    print(filename, heartbeats, duration, size, position)
     resultados = {
         "position": position,
-        "R": round(abs(f[np.argmax(R)]) * duration, 2), # - heartbeats),
-        "G": round(abs(f[np.argmax(G)]) * duration, 2), # - heartbeats),
-        "B": round(abs(f[np.argmax(B)]) * duration, 2), # - heartbeats),
+        "R": abs(f[np.argmax(R)]) * duration, # - heartbeats),
+        "G": abs(f[np.argmax(G)]) * duration, # - heartbeats),
+        "B": abs(f[np.argmax(B)]) * duration, # - heartbeats),
         "real": heartbeats
     }
     print(resultados)
@@ -135,7 +167,5 @@ if __name__ == "__main__":
     size_change = data.get("video").get("sizeChange")
     for size in range(size_change.get("min"), size_change.get("max"), size_change.get("step")):
         for position in data.get("video").get("positionChange"):
-            print("-----------------------------------")
-            print(filename, heartbeats, duration, size, position)
             process_file(filename, heartbeats, duration, size, position)
 
