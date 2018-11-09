@@ -1,0 +1,106 @@
+<html>
+<body>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<style>
+.bin{
+  min-width: 180px; height: 180px; max-width: 180px; margin: 0 auto
+}
+</style>
+
+<table>
+ <tr>
+    <td></td>
+    <td>HSV</td>
+    <td>HSV con filtro Rojo</td>
+  </tr>
+  <tr>
+    <td>NW</td>
+    <td><div id="cNW" class="bin"></div></td>
+    <td><div id="fNW" class="bin"></div></td>
+  </tr>
+  <tr>
+    <td>SW</td>
+    <td><div id="cSW" class="bin"></div></td>
+    <td><div id="fSW" class="bin"></div></td>
+  </tr>
+  <tr>
+    <td>NE</td>
+    <td><div id="cNE" class="bin"></div></td>
+    <td><div id="fNE" class="bin"></div></td>
+  </tr>
+  <tr>
+    <td>SE</td>
+    <td><div id="cSE" class="bin"></div></td>
+    <td><div id="fSE" class="bin"></div></td>
+  </tr>
+</table>
+
+<script>
+    function plotPie(id, r,g, b){
+Highcharts.chart(id, {
+		exporting: { enabled: false },
+    credits: {
+      enabled: false
+  },
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: ''
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+            name: 'V',
+            y: r,
+            color: '#139ce4'
+        }, {
+            name: 'S',
+            y: g,
+            color: '#d8f600'
+        }, {
+            name: 'H',
+            y: b,
+            color: '#e200f5'
+        }]
+    }]
+});
+}
+
+data = [
+{'real': 67, 'position': 'cNW', 'B': 66.8, 'R': 1.76, 'G': 900.02},
+{'real': 67, 'position': 'cSW', 'B': 66.8, 'R': 1.76, 'G': 900.02},
+{'real': 67, 'position': 'cNE', 'B': 66.8, 'R': 1.76, 'G': 900.02},
+{'real': 67, 'position': 'cSE', 'B': 66.8, 'R': 1.76, 'G': 900.02},
+
+{'real': 67, 'position': 'fNW', 'B': 66.8, 'R': 66.8, 'G': 900.02},
+{'real': 67, 'position': 'fSW', 'B': 66.8, 'R': 66.8, 'G': 900.02},
+{'real': 67, 'position': 'fNE', 'B': 900.02, 'R': 900.02, 'G': 900.02},
+{'real': 67, 'position': 'fSE', 'B': 900.02, 'R': 900.02, 'G': 900.02}
+
+];
+data.map( d => plotPie(d.position, d.R, d.G, d.B));
+
+
+</script>
+
+</body>
+</html>
